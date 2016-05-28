@@ -73,7 +73,7 @@
 
 (defun i3-get-or-make-client ()
   "Creates or returns a current process connected to i3 wm IPC."
-  (unless (boundp 'i3-client)
+  (unless (and (boundp 'i3-client) (processp i3-client))
     (setq i3-client (make-network-process :name i3-process-name :buffer (get-buffer-create i3-process-name)
                                           :coding '(raw-text-unix . raw-text-unix)
                                           :family 'local
